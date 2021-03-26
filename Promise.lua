@@ -18,18 +18,17 @@ PromiseState = {
 }
 
 function Promise:new()
-    o = {}
-    o = setmetatable(o, self)
+    local t = setmetatable({}, self)
     self.__index = self
-    o.observers = {
+    t.observers = {
         resultObservers = {},
         errorObservers = {}
     }
-    o.value = nil
-    o.error = nil
-    o.state = PromiseState.pending
-    o.isPromise = true
-    return o
+    t.value = nil
+    t.error = nil
+    t.state = PromiseState.pending
+    t.isPromise = true
+    return t
 end
 
 --- 核心方法
